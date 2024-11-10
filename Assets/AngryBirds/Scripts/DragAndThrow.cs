@@ -54,15 +54,26 @@ public class DragginArrow : MonoBehaviour
     void UpdateArrow()
     {
         Vector3 direction = startPoint - endPoint;
-        ApplyArrowScale(direction);
         ApplyArrowRotation(direction);
+
+        float scale = Mathf.Clamp(direction.magnitude, 0, maxArrowWidth) / maxArrowWidth;
+        ApplyArrowScale(scale);
+        ApplyArrowColor(scale);
     }
 
-    void ApplyArrowScale(Vector3 direction)
+    void ApplyArrowScale(float scale)
     {
-        float distance = direction.magnitude;
-        distance = Mathf.Clamp(distance, 0, maxArrowWidth);
-        arrowRender.transform.localScale = Vector3.one * (distance / maxArrowWidth);
+        arrowRender.transform.localScale = Vector3.one * scale;
+    }
+
+    void ApplyArrowColor(float scale)
+    {
+        SpriteRenderer[] sprites = arrowRender.GetComponentsInChildren<SpriteRenderer>();
+        
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            sprite.color = Color.Lerp(Color.green, Color.red, scale);
+        }
     }
 
     void ApplyArrowRotation(Vector3 direction)
