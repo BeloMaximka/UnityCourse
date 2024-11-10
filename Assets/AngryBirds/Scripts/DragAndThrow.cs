@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DragginArrow : MonoBehaviour
+public class DragAndThrow : MonoBehaviour
 {
     [SerializeField]
     private GameObject arrow;
