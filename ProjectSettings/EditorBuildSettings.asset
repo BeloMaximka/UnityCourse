@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Cats/Scenes/Cats.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/AngryBirds/Scenes/AngryBirds.unity
+    guid: 2ab39078d2777b046b279ab6e7d276a9
+  - enabled: 1
+    path: Assets/AngryBirds/Scenes/Level2.unity
+    guid: e64970a3ace2cc24a835f2fd43a0d85d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
