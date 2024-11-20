@@ -21,6 +21,7 @@ public class DragAndThrow : MonoBehaviour
     private Vector3 endPoint;
     private bool isDragging = false;
     private float maxArrowWidth;
+    private readonly float threshold = 0.1f;
 
     void Start()
     {
@@ -32,9 +33,10 @@ public class DragAndThrow : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             startPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            endPoint = startPoint;
             isDragging = true;
             arrowRender.SetActive(true);
-
+            ApplyArrowScale(0);
         }
 
         if (isDragging && Input.GetMouseButton(0))
@@ -54,6 +56,11 @@ public class DragAndThrow : MonoBehaviour
     void UpdateArrow()
     {
         Vector3 direction = endPoint - startPoint;
+        if (direction.magnitude < threshold)
+        {
+            return;
+        }
+
         ApplyArrowRotation(direction);
 
         float scale = Mathf.Clamp(direction.magnitude, 0, maxArrowWidth) / maxArrowWidth;
@@ -69,7 +76,7 @@ public class DragAndThrow : MonoBehaviour
     void ApplyArrowColor(float scale)
     {
         SpriteRenderer[] sprites = arrowRender.GetComponentsInChildren<SpriteRenderer>();
-        
+
         foreach (SpriteRenderer sprite in sprites)
         {
             sprite.color = Color.Lerp(Color.green, Color.red, scale);
@@ -86,6 +93,11 @@ public class DragAndThrow : MonoBehaviour
     void ThrowObject()
     {
         Vector3 direction = startPoint - endPoint;
+        if (direction.magnitude < threshold)
+        {
+            return;
+        }
+
         objectToThrow.gravityScale = 1;
         objectToThrow.AddForce(direction * force);
     }
