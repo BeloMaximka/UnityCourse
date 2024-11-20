@@ -53,7 +53,7 @@ public class DragAndThrow : MonoBehaviour
 
     void UpdateArrow()
     {
-        Vector3 direction = startPoint - endPoint;
+        Vector3 direction = endPoint - startPoint;
         ApplyArrowRotation(direction);
 
         float scale = Mathf.Clamp(direction.magnitude, 0, maxArrowWidth) / maxArrowWidth;
