@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class NextLevel : MonoBehaviour
 {
-    private Button button;
     void Start()
     {
-        button = GetComponent<Button>();
+        Button button = GetComponent<Button>();
         button.onClick.AddListener(GoToNextLevel);
     }
 

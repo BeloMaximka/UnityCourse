@@ -6,10 +6,9 @@ public class Continue : MonoBehaviour
     [SerializeField]
     private GameObject menu;
 
-    private Button button;
     void Start()
     {
-        button = GetComponent<Button>();
+        Button button = GetComponent<Button>();
         button.onClick.AddListener(Unpause);
     }
 
